@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class StudentNotFoundException extends IllegalStateException {
-    public StudentNotFoundException(String s) {
+public class UserNotFoundException extends IllegalStateException {
+    public UserNotFoundException(String s) {
         super(s);
     }
 }
