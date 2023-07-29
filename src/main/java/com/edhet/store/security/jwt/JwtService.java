@@ -1,7 +1,6 @@
 package com.edhet.store.security.jwt;
 
 import com.edhet.store.security.SecurityConstants;
-import com.edhet.store.user.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -24,7 +23,7 @@ public class JwtService {
     }
 
     private Boolean tokenExpired(String token) {
-        return  extractClaim(token, Claims::getExpiration).before(new Date());
+        return extractClaim(token, Claims::getExpiration).before(new Date());
     }
 
     private <T> T extractClaim(String token, Function<Claims, T> claimResolver) {
