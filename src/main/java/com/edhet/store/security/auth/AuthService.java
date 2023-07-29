@@ -27,7 +27,7 @@ public class AuthService {
         } catch (UsernameNotFoundException _e) {
             return ResponseEntity.status(404).body("No user with this email found");
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(403).body("Authentication failed: " + e.getMessage());
+            return ResponseEntity.status(403).body(e.getMessage());
         }
         return ResponseEntity.ok(jwtService.generateToken(user));
     }
