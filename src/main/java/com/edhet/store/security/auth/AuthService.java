@@ -19,7 +19,7 @@ public class AuthService {
     private final UserService userService;
     private final JwtService jwtService;
 
-    public ResponseEntity<String> loginUser(AuthenticationRequest request) {
+    public ResponseEntity<String> loginUser(LoginRequest request) {
         UserDetails user;
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));

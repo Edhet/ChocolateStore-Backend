@@ -1,6 +1,6 @@
 package com.edhet.store.security.auth;
 
-public record AuthenticationRequest(
+public record LoginRequest(
         String email,
         String password
 ) {

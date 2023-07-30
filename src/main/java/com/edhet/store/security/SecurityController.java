@@ -1,7 +1,7 @@
 package com.edhet.store.security;
 
 import com.edhet.store.security.auth.AuthService;
-import com.edhet.store.security.auth.AuthenticationRequest;
+import com.edhet.store.security.auth.LoginRequest;
 import com.edhet.store.security.registration.RegistrationRequest;
 import com.edhet.store.security.registration.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -20,7 +20,7 @@ public class SecurityController {
     private final AuthService authService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest request) {
+    public ResponseEntity<String> authenticate(@RequestBody LoginRequest request) {
         return authService.loginUser(request);
     }
 
