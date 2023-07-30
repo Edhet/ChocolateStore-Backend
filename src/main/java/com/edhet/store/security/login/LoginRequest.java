@@ -1,4 +1,4 @@
-package com.edhet.store.security.auth;
+package com.edhet.store.security.login;
 
 public record LoginRequest(
         String email,

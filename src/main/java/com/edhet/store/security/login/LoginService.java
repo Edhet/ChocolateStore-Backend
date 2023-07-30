@@ -1,4 +1,4 @@
-package com.edhet.store.security.auth;
+package com.edhet.store.security.login;
 
 import com.edhet.store.security.jwt.JwtService;
 import com.edhet.store.user.UserService;
@@ -13,13 +13,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AuthService {
+public class LoginService {
     private final AuthenticationManager authenticationManager;
 
     private final UserService userService;
     private final JwtService jwtService;
 
-    public ResponseEntity<String> loginUser(LoginRequest request) {
+    public ResponseEntity<String> login(LoginRequest request) {
         UserDetails user;
         try {
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));

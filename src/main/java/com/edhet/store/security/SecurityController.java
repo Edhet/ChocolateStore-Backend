@@ -1,7 +1,7 @@
 package com.edhet.store.security;
 
-import com.edhet.store.security.auth.AuthService;
-import com.edhet.store.security.auth.LoginRequest;
+import com.edhet.store.security.login.LoginRequest;
+import com.edhet.store.security.login.LoginService;
 import com.edhet.store.security.registration.RegistrationRequest;
 import com.edhet.store.security.registration.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecurityController {
 
     private final RegistrationService registrationService;
-    private final AuthService authService;
+    private final LoginService loginService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> authenticate(@RequestBody LoginRequest request) {
-        return authService.loginUser(request);
+    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+        return loginService.login(request);
     }
 
     @PostMapping("/signup")
