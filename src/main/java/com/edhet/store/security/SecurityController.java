@@ -19,9 +19,9 @@ public class SecurityController {
     private final RegistrationService registrationService;
     private final AuthService authService;
 
-    @PostMapping("/authenticate")
+    @PostMapping("/login")
     public ResponseEntity<String> authenticate(@RequestBody AuthenticationRequest request) {
-        return authService.authenticateUser(request);
+        return authService.loginUser(request);
     }
 
     @PostMapping("/signup")
