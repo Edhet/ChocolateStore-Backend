@@ -1,15 +1,19 @@
 package com.edhet.store.user;
 
+import com.edhet.store.order.BuyingOrder;
+import com.edhet.store.product.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.SourceType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "storeUsers")
@@ -42,9 +46,15 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @Column(insertable = false, updatable = false)
-    @CreationTimestamp
+    @Column(insertable = false, updatable = false, nullable = false)
+    @CreationTimestamp(source = SourceType.DB)
     private LocalDateTime creationDate;
+
+    @ManyToOne
+    private Category prefferedCategory;
+
+    @OneToMany
+    private List<BuyingOrder> orders;
 
     @JsonIgnore
     @Override
