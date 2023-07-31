@@ -48,7 +48,7 @@ public class User implements UserDetails {
 
     @Column(insertable = false, updatable = false, nullable = false)
     @CreationTimestamp(source = SourceType.DB)
-    private LocalDateTime creationDate;
+    private LocalDateTime creationTimestamp;
 
     @ManyToOne
     private Category prefferedCategory;
