@@ -5,7 +5,6 @@ import com.edhet.store.security.login.LoginService;
 import com.edhet.store.security.registration.RegistrationRequest;
 import com.edhet.store.security.registration.RegistrationService;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +16,7 @@ public class SecurityController {
     private final LoginService loginService;
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+    public String login(@RequestBody LoginRequest request) {
         return loginService.login(request);
     }
 
