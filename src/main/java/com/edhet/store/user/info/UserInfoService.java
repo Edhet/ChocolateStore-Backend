@@ -11,15 +11,12 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UserInfoService {
-    private final JwtService jwtService;
     private final UserService userService;
     private final DtoMapper dtoMapper;
 
     public UserDTO getUserInfo(String authHeader) {
         final String jwtToken = authHeader.substring(SecurityConstants.TOKEN_PREFIX.length() - 1);
-        final String email = jwtService.extractEmail(jwtToken);
-
-        User user = userService.getUser(email);
+        User user = userService.getUserFromJwt(jwtToken);
         return dtoMapper.userToDto(user);
     }
 }

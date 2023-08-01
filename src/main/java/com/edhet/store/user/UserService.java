@@ -3,6 +3,7 @@ package com.edhet.store.user;
 import com.edhet.store.exception.errors.UniqueDatabaseFieldException;
 import com.edhet.store.exception.errors.InvalidDateException;
 import com.edhet.store.exception.errors.EntityNotFoundException;
+import com.edhet.store.security.jwt.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +16,13 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
+    private final JwtService jwtService;
     private final UserRepository userRepository;
+
+    public User getUserFromJwt(String jwtToken) {
+        final String email = jwtService.extractEmail(jwtToken);
+        return this.getUser(email);
+    }
 
     public User getUser(String email) throws EntityNotFoundException {
         return userRepository
