@@ -1,4 +1,4 @@
-package com.edhet.store.user;
+package com.edhet.store.user.info;
 
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/info")
 @AllArgsConstructor
-public class UserController {
+public class UserInfoController {
     private final UserInfoService userInfoService;
 
     @GetMapping

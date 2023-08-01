@@ -3,7 +3,7 @@ package com.edhet.store.util;
 import com.edhet.store.exception.errors.BadRegistrationRequestException;
 import com.edhet.store.security.registration.RegistrationRequest;
 import com.edhet.store.user.User;
-import com.edhet.store.user.UserDTO;
+import com.edhet.store.user.info.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
