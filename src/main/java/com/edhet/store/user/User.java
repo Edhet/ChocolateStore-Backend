@@ -1,7 +1,7 @@
 package com.edhet.store.user;
 
 import com.edhet.store.order.BuyingOrder;
-import com.edhet.store.product.Category;
+import com.edhet.store.category.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;

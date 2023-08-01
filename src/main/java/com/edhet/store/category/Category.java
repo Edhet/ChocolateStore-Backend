@@ -1,5 +1,6 @@
-package com.edhet.store.product;
+package com.edhet.store.category;
 
+import com.edhet.store.product.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -21,6 +22,15 @@ public class Category {
     @NonNull
     private String name;
 
+    @NonNull
     @OneToMany
     private List<Product> products;
+
+    public void addProduct(Product product) {
+        this.products.add(product);
+    }
+
+    public void removeProduct(Product product) {
+        this.products.remove(product);
+    }
 }
