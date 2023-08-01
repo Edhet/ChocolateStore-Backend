@@ -1,6 +1,7 @@
 package com.edhet.store.security.login;
 
-import com.edhet.store.exception.errors.WrongPasswordException;
+import com.edhet.store.exception.errors.EntityNotFoundException;
+import com.edhet.store.exception.errors.WrongCredentialsException;
 import com.edhet.store.security.jwt.JwtService;
 import com.edhet.store.user.UserService;
 import lombok.AllArgsConstructor;
@@ -18,14 +19,16 @@ public class LoginService {
     private final UserService userService;
     private final JwtService jwtService;
 
-    public String login(LoginRequest request) throws WrongPasswordException {
-        UserDetails user = userService.getUser(request.email());
+    public String login(LoginRequest request) throws WrongCredentialsException {
+        UserDetails user;
         try {
+            user = userService.getUser(request.email());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
         } catch (AuthenticationException e) {
-            throw new WrongPasswordException("Invalid password");
+            throw new WrongCredentialsException("Invalid password");
+        } catch (EntityNotFoundException e) {
+            throw new WrongCredentialsException(e.getMessage());
         }
-
         return jwtService.generateToken(user);
     }
 }

@@ -1,8 +1,8 @@
 package com.edhet.store.user;
 
-import com.edhet.store.exception.errors.EmailTakenException;
-import com.edhet.store.exception.errors.InvalidBirthDateException;
-import com.edhet.store.exception.errors.UserNotFoundException;
+import com.edhet.store.exception.errors.UniqueDatabaseFieldException;
+import com.edhet.store.exception.errors.InvalidDateException;
+import com.edhet.store.exception.errors.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,29 +17,29 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
 
-    public User getUser(String email) throws UserNotFoundException {
+    public User getUser(String email) throws EntityNotFoundException {
         return userRepository
                 .findByEmail(email)
-                .orElseThrow(() -> new UserNotFoundException("No user with email: " + email));
+                .orElseThrow(() -> new EntityNotFoundException("No user with email: " + email));
     }
 
-    public User getUser(Long id) throws UserNotFoundException {
+    public User getUser(Long id) throws EntityNotFoundException {
         return userRepository
                 .findById(id)
-                .orElseThrow(() -> new UserNotFoundException("No user with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("No user with id: " + id));
     }
 
-    public void addUser(User user) throws EmailTakenException {
+    public void addUser(User user) throws UniqueDatabaseFieldException {
         if (!validDate(user.getBirthDate()))
-            throw new InvalidBirthDateException("Inserted date is after today");
+            throw new InvalidDateException("Inserted date is after today");
         if (userRepository.existsByEmail(user.getEmail()))
-            throw new EmailTakenException("Email " + user.getEmail() + " has been taken");
+            throw new UniqueDatabaseFieldException("Email " + user.getEmail() + " has been taken");
         userRepository.save(user);
     }
 
-    public void deleteUser(Long id) throws UserNotFoundException {
+    public void deleteUser(Long id) throws EntityNotFoundException {
         if (!userRepository.existsById(id))
-            throw new UserNotFoundException("No user with id: " + id);
+            throw new EntityNotFoundException("No user with id: " + id);
         userRepository.deleteById(id);
     }
 

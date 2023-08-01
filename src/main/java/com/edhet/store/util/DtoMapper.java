@@ -1,6 +1,6 @@
 package com.edhet.store.util;
 
-import com.edhet.store.exception.errors.BadRegistrationRequestException;
+import com.edhet.store.exception.errors.BadRequestException;
 import com.edhet.store.security.registration.RegistrationRequest;
 import com.edhet.store.user.User;
 import com.edhet.store.user.info.UserDTO;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class DtoMapper {
     private final PasswordEncoder passwordEncoder;
 
-    public User registrationRequestToUser(RegistrationRequest request) throws BadRegistrationRequestException {
+    public User registrationRequestToUser(RegistrationRequest request) throws BadRequestException {
         User user;
         try {
             user = new User(
@@ -25,10 +25,10 @@ public class DtoMapper {
                     request.gender()
             );
         } catch (IllegalArgumentException e) {
-            throw new BadRegistrationRequestException("password field is null");
+            throw new BadRequestException("password field is null");
         } catch (NullPointerException e) {
             String field = e.getMessage().split(" ")[0];
-            throw new BadRegistrationRequestException(field + " field is null");
+            throw new BadRequestException(field + " field is null");
         }
         return user;
     }

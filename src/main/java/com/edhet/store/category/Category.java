@@ -1,10 +1,7 @@
 package com.edhet.store.category;
 
 import com.edhet.store.product.Product;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
@@ -20,6 +17,7 @@ public class Category {
     private Long id;
 
     @NonNull
+    @Column(unique = true)
     private String name;
 
     @NonNull

@@ -3,9 +3,9 @@ package com.edhet.store.exception.errors;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(HttpStatus.NOT_FOUND)
-public class UserNotFoundException extends IllegalStateException {
-    public UserNotFoundException(String s) {
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+public class InvalidDateException extends IllegalArgumentException {
+    public InvalidDateException(String s) {
         super(s);
     }
 }
