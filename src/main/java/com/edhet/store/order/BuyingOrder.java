@@ -1,11 +1,8 @@
 package com.edhet.store.order;
 
-import com.edhet.store.product.Product;
-import com.edhet.store.user.User;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 @Entity
@@ -18,14 +15,12 @@ public class BuyingOrder {
     @GeneratedValue
     private Long id;
 
-    @ManyToOne
     @NonNull
-    private Product product;
+    private Long productId;
 
     @NonNull
     private Long amount;
 
-    @ManyToOne
     @NonNull
-    private User buyer;
+    private Long buyerId;
 }

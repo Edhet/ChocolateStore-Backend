@@ -15,7 +15,7 @@ public record UserDTO(
         LocalDate birthDate,
         Gender gender,
         List<BuyingOrder> orders,
-        Category prefferedCategory,
+        String prefferedCategory,
         LocalDateTime creationTimestamp
         ) {
 }

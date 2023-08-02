@@ -50,8 +50,7 @@ public class User implements UserDetails {
     @CreationTimestamp(source = SourceType.DB)
     private LocalDateTime creationTimestamp;
 
-    @ManyToOne
-    private Category prefferedCategory;
+    private String prefferedCategory;
 
     @OneToMany
     private List<BuyingOrder> orders;
