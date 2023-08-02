@@ -1,8 +1,8 @@
 package com.edhet.store.user;
 
-import com.edhet.store.exception.errors.UniqueDatabaseFieldException;
-import com.edhet.store.exception.errors.InvalidDateException;
 import com.edhet.store.exception.errors.EntityNotFoundException;
+import com.edhet.store.exception.errors.InvalidDateException;
+import com.edhet.store.exception.errors.UniqueDatabaseFieldException;
 import com.edhet.store.security.jwt.JwtService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -50,14 +50,14 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
     }
 
+    private Boolean validDate(LocalDate date) {
+        return date.isBefore(LocalDate.now());
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
                 .findByEmail(username)
                 .orElseThrow(() -> new UsernameNotFoundException("No user with email: " + username));
-    }
-
-    private Boolean validDate(LocalDate date) {
-        return date.isBefore(LocalDate.now());
     }
 }

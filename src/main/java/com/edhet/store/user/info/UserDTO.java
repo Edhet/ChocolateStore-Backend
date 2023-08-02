@@ -1,7 +1,6 @@
 package com.edhet.store.user.info;
 
 import com.edhet.store.order.BuyingOrder;
-import com.edhet.store.category.Category;
 import com.edhet.store.user.Gender;
 
 import java.time.LocalDate;

@@ -1,6 +1,5 @@
 package com.edhet.store.product;
 
-import com.edhet.store.category.CategoryService;
 import com.edhet.store.exception.errors.BadRequestException;
 import com.edhet.store.exception.errors.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -13,16 +12,13 @@ import java.util.List;
 public class ProductService {
 
     private final ProductRepository productRepository;
-    private final CategoryService categoryService;
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
     }
 
     public List<Product> getAllProductsInCategory(String categoryName) {
-        return categoryService
-                .getCategory(categoryName)
-                .getProducts();
+        return productRepository.findAllByCategory(categoryName);
     }
 
     public Product getProduct(Long id) throws EntityNotFoundException {
@@ -39,5 +35,9 @@ public class ProductService {
             throw new BadRequestException(e.getMessage());
         }
         return getProduct(expectedId);
+    }
+
+    public void addProduct(Product product) {
+        productRepository.save(product);
     }
 }

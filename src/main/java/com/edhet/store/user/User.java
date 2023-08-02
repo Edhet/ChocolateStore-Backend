@@ -1,7 +1,6 @@
 package com.edhet.store.user;
 
 import com.edhet.store.order.BuyingOrder;
-import com.edhet.store.category.Category;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -50,7 +49,7 @@ public class User implements UserDetails {
     @CreationTimestamp(source = SourceType.DB)
     private LocalDateTime creationTimestamp;
 
-    private String prefferedCategory;
+    private String preferredCategory;
 
     @OneToMany
     private List<BuyingOrder> orders;

@@ -20,7 +20,6 @@ public class Category {
     @Column(unique = true)
     private String name;
 
-    @NonNull
     @OneToMany
     private List<Product> products;
 

@@ -41,7 +41,7 @@ public class DtoMapper {
                 user.getBirthDate(),
                 user.getGender(),
                 user.getOrders(),
-                user.getPrefferedCategory(),
+                user.getPreferredCategory(),
                 user.getCreationTimestamp()
         );
     }
