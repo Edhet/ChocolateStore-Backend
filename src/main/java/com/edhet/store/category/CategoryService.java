@@ -36,9 +36,4 @@ public class CategoryService {
                 .findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Category with id " + id + " not found"));
     }
-
-    public void addProductToCategory(Product product, @NonNull Category category) {
-        category.addProduct(product);
-        categoryRepository.save(category);
-    }
 }

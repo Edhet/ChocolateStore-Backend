@@ -17,10 +17,6 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public List<Product> getAllProductsInCategory(String categoryName) {
-        return productRepository.findAllByCategory(categoryName);
-    }
-
     public Product getProduct(Long id) throws EntityNotFoundException {
         return productRepository
                 .findById(id)
