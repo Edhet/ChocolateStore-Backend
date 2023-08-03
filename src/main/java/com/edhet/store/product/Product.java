@@ -1,8 +1,7 @@
 package com.edhet.store.product;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import com.edhet.store.category.Category;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -21,7 +20,8 @@ public class Product {
     private String name;
 
     @NonNull
-    private String category;
+    @ManyToOne
+    private Category category;
 
     @NonNull
     private BigDecimal price;
