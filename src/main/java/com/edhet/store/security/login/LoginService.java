@@ -1,7 +1,7 @@
 package com.edhet.store.security.login;
 
-import com.edhet.store.exception.errors.EntityNotFoundException;
-import com.edhet.store.exception.errors.WrongCredentialsException;
+import com.edhet.store.error.exceptions.EntityNotFoundException;
+import com.edhet.store.error.exceptions.WrongCredentialsException;
 import com.edhet.store.security.jwt.JwtService;
 import com.edhet.store.user.UserService;
 import lombok.AllArgsConstructor;

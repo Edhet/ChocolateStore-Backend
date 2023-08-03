@@ -2,7 +2,7 @@ package com.edhet.store.util;
 
 import com.edhet.store.category.Category;
 import com.edhet.store.category.CategoryDTO;
-import com.edhet.store.exception.errors.BadRequestException;
+import com.edhet.store.error.exceptions.BadRequestException;
 import com.edhet.store.product.Product;
 import com.edhet.store.product.ProductDTO;
 import com.edhet.store.security.registration.RegistrationRequest;

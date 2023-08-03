@@ -1,4 +1,4 @@
-package com.edhet.store.exception.errors;
+package com.edhet.store.error.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

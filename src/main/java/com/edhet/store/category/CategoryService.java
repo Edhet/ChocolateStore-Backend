@@ -1,7 +1,7 @@
 package com.edhet.store.category;
 
-import com.edhet.store.exception.errors.BadRequestException;
-import com.edhet.store.exception.errors.EntityNotFoundException;
+import com.edhet.store.error.exceptions.BadRequestException;
+import com.edhet.store.error.exceptions.EntityNotFoundException;
 import com.edhet.store.util.Shared;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

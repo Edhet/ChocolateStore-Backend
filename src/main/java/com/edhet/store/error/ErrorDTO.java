@@ -1,4 +1,4 @@
-package com.edhet.store.exception;
+package com.edhet.store.error;
 
 import java.time.LocalDateTime;
 

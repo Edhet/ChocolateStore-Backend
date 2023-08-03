@@ -1,4 +1,4 @@
-package com.edhet.store.exception;
+package com.edhet.store.error;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;

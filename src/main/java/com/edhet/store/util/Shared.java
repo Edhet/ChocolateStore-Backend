@@ -1,6 +1,6 @@
 package com.edhet.store.util;
 
-import com.edhet.store.exception.errors.BadRequestException;
+import com.edhet.store.error.exceptions.BadRequestException;
 
 public final class Shared {
     private Shared() {

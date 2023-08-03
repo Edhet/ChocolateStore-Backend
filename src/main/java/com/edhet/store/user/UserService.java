@@ -1,8 +1,8 @@
 package com.edhet.store.user;
 
-import com.edhet.store.exception.errors.EntityNotFoundException;
-import com.edhet.store.exception.errors.InvalidDateException;
-import com.edhet.store.exception.errors.UniqueDatabaseFieldException;
+import com.edhet.store.error.exceptions.EntityNotFoundException;
+import com.edhet.store.error.exceptions.InvalidDateException;
+import com.edhet.store.error.exceptions.UniqueDatabaseFieldException;
 import com.edhet.store.security.SecurityConstants;
 import com.edhet.store.security.jwt.JwtService;
 import lombok.AllArgsConstructor;
