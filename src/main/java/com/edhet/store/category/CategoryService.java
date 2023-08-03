@@ -2,11 +2,12 @@ package com.edhet.store.category;
 
 import com.edhet.store.exception.errors.EntityNotFoundException;
 import com.edhet.store.exception.errors.UniqueDatabaseFieldException;
-import com.edhet.store.product.Product;
+import com.edhet.store.product.ProductDTO;
+import com.edhet.store.util.DtoMapper;
 import lombok.AllArgsConstructor;
-import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,13 +17,6 @@ public class CategoryService {
 
     public List<Category> getAllCategories() {
         return categoryRepository.findAll();
-    }
-
-    public void createCategory(String name) {
-        if (categoryRepository.existsByName(name))
-            throw new UniqueDatabaseFieldException("A category called " + name + " already exists");
-        Category newCategory = new Category(name);
-        categoryRepository.save(newCategory);
     }
 
     public Category getCategory(String name) throws EntityNotFoundException {

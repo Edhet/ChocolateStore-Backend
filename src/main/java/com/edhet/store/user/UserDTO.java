@@ -1,7 +1,6 @@
-package com.edhet.store.user.info;
+package com.edhet.store.user;
 
 import com.edhet.store.order.BuyingOrder;
-import com.edhet.store.user.Gender;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

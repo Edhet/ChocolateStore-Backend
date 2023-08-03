@@ -1,5 +1,6 @@
 package com.edhet.store.user.info;
 
+import com.edhet.store.user.UserDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;

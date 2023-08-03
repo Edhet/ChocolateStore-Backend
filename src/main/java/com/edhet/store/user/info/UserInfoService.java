@@ -2,6 +2,7 @@ package com.edhet.store.user.info;
 
 import com.edhet.store.security.SecurityConstants;
 import com.edhet.store.user.User;
+import com.edhet.store.user.UserDTO;
 import com.edhet.store.user.UserService;
 import com.edhet.store.util.DtoMapper;
 import lombok.AllArgsConstructor;
