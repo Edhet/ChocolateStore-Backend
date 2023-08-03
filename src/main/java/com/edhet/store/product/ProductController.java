@@ -1,5 +1,6 @@
 package com.edhet.store.product;
 
+import com.edhet.store.util.DtoMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,14 +14,18 @@ import java.util.List;
 @AllArgsConstructor
 public class ProductController {
     private final ProductService productService;
+    private final DtoMapper dtoMapper;
 
     @GetMapping("/all")
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductDTO> getAllProducts() {
+        return productService
+                .getAllProducts()
+                .stream().map(dtoMapper::productToDto)
+                .toList();
     }
 
     @GetMapping("{id}")
-    public Product getProduct(@PathVariable String id) {
-        return productService.getProductFromRequest(id);
+    public ProductDTO getProduct(@PathVariable String id) {
+        return dtoMapper.productToDto(productService.getProductFromRequest(id));
     }
 }

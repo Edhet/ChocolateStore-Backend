@@ -2,6 +2,7 @@ package com.edhet.store.product;
 
 import com.edhet.store.exception.errors.BadRequestException;
 import com.edhet.store.exception.errors.EntityNotFoundException;
+import com.edhet.store.util.Shared;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -24,12 +25,7 @@ public class ProductService {
     }
 
     public Product getProductFromRequest(String id) throws BadRequestException {
-        long expectedId;
-        try {
-            expectedId = Long.parseLong(id);
-        } catch (NumberFormatException e) {
-            throw new BadRequestException(e.getMessage());
-        }
+        long expectedId = Shared.getIdFromStringRequest(id);
         return getProduct(expectedId);
     }
 

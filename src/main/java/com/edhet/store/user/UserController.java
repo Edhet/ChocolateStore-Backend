@@ -1,6 +1,6 @@
-package com.edhet.store.user.info;
+package com.edhet.store.user;
 
-import com.edhet.store.user.UserDTO;
+import com.edhet.store.util.DtoMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/v1/info")
 @AllArgsConstructor
-public class UserInfoController {
-    private final UserInfoService userInfoService;
+public class UserController {
+
+    private final UserService userService;
+    private final DtoMapper dtoMapper;
 
     @GetMapping
     public UserDTO getUserInfo(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader) {
-        return userInfoService.getUserInfo(authHeader);
+        return dtoMapper.userToDto(userService.getUserFromJwt(authHeader));
     }
 }

@@ -1,13 +1,11 @@
 package com.edhet.store.category;
 
+import com.edhet.store.exception.errors.BadRequestException;
 import com.edhet.store.exception.errors.EntityNotFoundException;
-import com.edhet.store.exception.errors.UniqueDatabaseFieldException;
-import com.edhet.store.product.ProductDTO;
-import com.edhet.store.util.DtoMapper;
+import com.edhet.store.util.Shared;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -19,15 +17,27 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public List<String> getAllCategoryNames() {
+        return categoryRepository
+                .findAll()
+                .stream().map(Category::getName)
+                .toList();
+    }
+
+    public Category getCategoryFromRequest(String id) throws BadRequestException {
+        long expectedId = Shared.getIdFromStringRequest(id);
+        return getCategory(expectedId);
+    }
+
     public Category getCategory(String name) throws EntityNotFoundException {
         return categoryRepository
                 .findByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("Category with name " + name + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("No Category with name: " + name));
     }
 
     public Category getCategory(Long id) throws EntityNotFoundException {
         return categoryRepository
                 .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Category with id " + id + " not found"));
+                .orElseThrow(() -> new EntityNotFoundException("No Category with id: " + id));
     }
 }
