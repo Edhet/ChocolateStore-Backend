@@ -31,7 +31,7 @@ public class BuyOrderService {
         buyOrderRepository.save(buyOrder);
     }
 
-    public void deleteBuyingOrder(String authHeader, String requestId) throws EntityNotFoundException {
+    public void deleteBuyingOrder(String authHeader, String requestId) throws EntityNotFoundException, BadRequestException {
         Long expectedProductId = Shared.stringToLongParsing(requestId);
 
         BuyOrder selectedBuyOrder = buyOrderRepository
