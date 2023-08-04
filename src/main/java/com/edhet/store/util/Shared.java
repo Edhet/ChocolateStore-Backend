@@ -11,7 +11,7 @@ public final class Shared {
         try {
             expectedId = Long.parseLong(id);
         } catch (NumberFormatException e) {
-            throw new BadRequestException("Error parsing id parameter to number");
+            throw new BadRequestException("Error parsing string parameter to number");
         }
         return expectedId;
     }
