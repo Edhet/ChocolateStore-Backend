@@ -13,7 +13,18 @@ public class BuyOrderController {
 
     @PostMapping("/buy")
     public void createBuyingOrder(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader,
-                                     @RequestBody BuyOrderRequest request) {
+                                  @RequestBody BuyOrderRequest request) {
     buyOrderService.createBuyingOrder(authHeader, request);
+    }
+
+    @DeleteMapping("/remove")
+    public void removeBuyingOrder(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader,
+                                  @RequestBody String requestId) {
+    buyOrderService.deleteBuyingOrder(authHeader, requestId);
+    }
+
+    @PostMapping("/finish")
+    public void buyCartItems(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader) {
+        buyOrderService.buyCart(authHeader);
     }
 }

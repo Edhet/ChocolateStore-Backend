@@ -15,5 +15,5 @@ public record UserDTO(
         List<BuyOrderDTO> buyOrders,
         String preferredCategory,
         LocalDateTime creationTimestamp
-        ) {
+) {
 }
