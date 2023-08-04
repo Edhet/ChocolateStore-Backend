@@ -25,7 +25,7 @@ public class CategoryService {
     }
 
     public Category getCategoryFromRequest(String id) throws BadRequestException {
-        long expectedId = Shared.getIdFromStringRequest(id);
+        long expectedId = Shared.stringToLongParsing(id);
         return getCategory(expectedId);
     }
 

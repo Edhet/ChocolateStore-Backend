@@ -13,7 +13,7 @@ import lombok.*;
 @AllArgsConstructor
 @RequiredArgsConstructor
 @NoArgsConstructor
-public class BuyingOrder {
+public class BuyOrder {
     @Id
     @GeneratedValue
     private Long id;

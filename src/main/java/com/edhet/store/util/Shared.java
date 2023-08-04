@@ -6,7 +6,7 @@ public final class Shared {
     private Shared() {
     }
 
-    public static Long getIdFromStringRequest(String id) throws BadRequestException {
+    public static Long stringToLongParsing(String id) throws BadRequestException {
         long expectedId;
         try {
             expectedId = Long.parseLong(id);

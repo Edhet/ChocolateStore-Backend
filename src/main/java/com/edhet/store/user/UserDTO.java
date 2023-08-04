@@ -1,6 +1,6 @@
 package com.edhet.store.user;
 
-import com.edhet.store.order.BuyingOrder;
+import com.edhet.store.order.BuyOrderDTO;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,7 +12,7 @@ public record UserDTO(
         String email,
         LocalDate birthDate,
         Gender gender,
-        List<BuyingOrder> orders,
+        List<BuyOrderDTO> buyOrders,
         String prefferedCategory,
         LocalDateTime creationTimestamp
         ) {
