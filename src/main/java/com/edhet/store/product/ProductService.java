@@ -25,11 +25,7 @@ public class ProductService {
     }
 
     public Product getProductFromRequest(String id) throws BadRequestException {
-        long expectedId = Shared.getIdFromStringRequest(id);
+        long expectedId = Shared.stringToLongParsing(id);
         return getProduct(expectedId);
-    }
-
-    public void addProduct(Product product) {
-        productRepository.save(product);
     }
 }

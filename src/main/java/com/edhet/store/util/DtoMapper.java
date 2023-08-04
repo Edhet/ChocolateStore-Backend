@@ -3,6 +3,8 @@ package com.edhet.store.util;
 import com.edhet.store.category.Category;
 import com.edhet.store.category.CategoryDTO;
 import com.edhet.store.error.exceptions.BadRequestException;
+import com.edhet.store.order.BuyOrder;
+import com.edhet.store.order.BuyOrderDTO;
 import com.edhet.store.product.Product;
 import com.edhet.store.product.ProductDTO;
 import com.edhet.store.security.registration.RegistrationRequest;
@@ -40,13 +42,15 @@ public class DtoMapper {
     }
 
     public UserDTO userToDto(User user) {
+        List<BuyOrderDTO> buyOrderDTOs = user.getBuyOrders().stream().map(this::buyOrderToDto).toList();
+
         return new UserDTO(
                 user.getFirstName(),
                 user.getSurname(),
                 user.getEmail(),
                 user.getBirthDate(),
                 user.getGender(),
-                user.getOrders(),
+                buyOrderDTOs,
                 (user.getPreferredCategory() != null) ? user.getPreferredCategory().getName() : null,
                 user.getCreationTimestamp()
         );
@@ -68,6 +72,16 @@ public class DtoMapper {
                 category.getId(),
                 category.getName(),
                 productDTOs
+        );
+    }
+
+    public BuyOrderDTO buyOrderToDto(BuyOrder buyOrder) {
+        ProductDTO productDTO = productToDto(buyOrder.getProduct());
+
+        return new BuyOrderDTO(
+                buyOrder.getId(),
+                productDTO,
+                buyOrder.getAmount()
         );
     }
 }

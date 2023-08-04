@@ -1,7 +1,7 @@
 package com.edhet.store.user;
 
 import com.edhet.store.category.Category;
-import com.edhet.store.order.BuyingOrder;
+import com.edhet.store.order.BuyOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -53,8 +53,8 @@ public class User implements UserDetails {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category preferredCategory;
 
-    @OneToMany(mappedBy = "buyer")
-    private List<BuyingOrder> orders;
+    @OneToMany(mappedBy = "buyer", orphanRemoval = true)
+    private List<BuyOrder> buyOrders;
 
     @JsonIgnore
     @Override
