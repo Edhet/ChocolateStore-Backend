@@ -1,5 +1,7 @@
 package com.edhet.store.util;
 
+import com.edhet.store.address.Address;
+import com.edhet.store.address.AddressDTO;
 import com.edhet.store.category.Category;
 import com.edhet.store.category.CategoryDTO;
 import com.edhet.store.error.exceptions.BadRequestException;
@@ -7,6 +9,7 @@ import com.edhet.store.order.BuyOrder;
 import com.edhet.store.order.BuyOrderDTO;
 import com.edhet.store.product.Product;
 import com.edhet.store.product.ProductDTO;
+import com.edhet.store.security.login.JwtResponse;
 import com.edhet.store.security.registration.RegistrationRequest;
 import com.edhet.store.user.User;
 import com.edhet.store.user.UserDTO;
@@ -43,6 +46,8 @@ public class DtoMapper {
 
     public UserDTO userToDto(User user) {
         List<BuyOrderDTO> buyOrderDTOs = user.getBuyOrders().stream().map(this::buyOrderToDto).toList();
+        AddressDTO addressDTO = (user.getAddress() != null) ? addressToDto(user.getAddress()) : null;
+        String preferredCategory = (user.getPreferredCategory() != null) ? user.getPreferredCategory().getName() : null;
 
         return new UserDTO(
                 user.getFirstName(),
@@ -50,8 +55,9 @@ public class DtoMapper {
                 user.getEmail(),
                 user.getBirthDate(),
                 user.getGender(),
+                addressDTO,
                 buyOrderDTOs,
-                (user.getPreferredCategory() != null) ? user.getPreferredCategory().getName() : null,
+                preferredCategory,
                 user.getCreationTimestamp()
         );
     }
@@ -83,5 +89,20 @@ public class DtoMapper {
                 productDTO,
                 buyOrder.getAmount()
         );
+    }
+
+    public AddressDTO addressToDto(Address address) {
+        return new AddressDTO(
+                address.getCountry(),
+                address.getState(),
+                address.getCity(),
+                address.getPostalCode(),
+                address.getRoad(),
+                address.getNumber()
+        );
+    }
+
+    public JwtResponse jwtToResponse(String jwt) {
+        return new JwtResponse(jwt);
     }
 }

@@ -1,5 +1,6 @@
 package com.edhet.store.user;
 
+import com.edhet.store.address.AddressDTO;
 import com.edhet.store.order.BuyOrderDTO;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ public record UserDTO(
         String email,
         LocalDate birthDate,
         Gender gender,
+        AddressDTO address,
         List<BuyOrderDTO> buyOrders,
         String preferredCategory,
         LocalDateTime creationTimestamp
