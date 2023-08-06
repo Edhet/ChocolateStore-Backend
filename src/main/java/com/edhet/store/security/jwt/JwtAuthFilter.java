@@ -3,6 +3,7 @@ package com.edhet.store.security.jwt;
 import com.edhet.store.security.SecurityConstants;
 import com.edhet.store.user.User;
 import com.edhet.store.user.UserService;
+import io.jsonwebtoken.JwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,8 +34,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
             return;
         }
 
+
         final String jwtToken = authHeader.substring(SecurityConstants.TOKEN_PREFIX.length() - 1);
-        final String userEmail = jwtService.extractEmail(jwtToken);
+        String userEmail = null;
+
+        try {
+            userEmail = jwtService.extractEmail(jwtToken);
+        } catch (JwtException e) {
+            logger.info(e.getClass().getName() + ": " + e.getMessage());
+        }
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             User userInfo = userService.getUser(userEmail);
