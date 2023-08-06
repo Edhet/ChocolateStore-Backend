@@ -1,5 +1,6 @@
 package com.edhet.store.user;
 
+import com.edhet.store.address.Address;
 import com.edhet.store.category.Category;
 import com.edhet.store.order.BuyOrder;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -45,6 +46,9 @@ public class User implements UserDetails {
     @NonNull
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @OneToOne
+    private Address address;
 
     @Column(insertable = false, updatable = false, nullable = false)
     @CreationTimestamp(source = SourceType.DB)
