@@ -1,6 +1,8 @@
 package com.edhet.store.user;
 
 
+import com.edhet.store.category.Category;
+import com.edhet.store.category.CategoryService;
 import com.edhet.store.error.exceptions.EntityNotFoundException;
 import com.edhet.store.error.exceptions.InvalidDateException;
 import com.edhet.store.error.exceptions.UniqueDatabaseFieldException;
@@ -18,6 +20,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class UserService implements UserDetailsService {
 
+    private final CategoryService categoryService;
     private final JwtService jwtService;
     private final UserRepository userRepository;
 
@@ -52,6 +55,14 @@ public class UserService implements UserDetailsService {
         if (!userRepository.existsById(id))
             throw new EntityNotFoundException("No user with id: " + id);
         userRepository.deleteById(id);
+    }
+
+    public void setPreferredCategory(String authHeader, String categoryName) {
+        User userFromJwt = getUserFromJwt(authHeader);
+        Category selectedCategory = categoryService.getCategory(categoryName);
+
+        userFromJwt.setPreferredCategory(selectedCategory);
+        userRepository.save(userFromJwt);
     }
 
     private Boolean validDate(LocalDate date) {
