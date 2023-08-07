@@ -19,8 +19,11 @@ public class AddressService {
         Address address = dtoMapper.requestToAddress(request, userFromJwt);
 
         boolean shouldReplaceAddress = userFromJwt.getAddress() != null;
-        if (shouldReplaceAddress)
-            addressRepository.delete(userFromJwt.getAddress());
+        if (shouldReplaceAddress) {
+            Address currentAddress = userFromJwt.getAddress();
+            userFromJwt.setAddress(null);
+            addressRepository.delete(currentAddress);
+        }
 
         userFromJwt.setAddress(address);
         addressRepository.save(address);
