@@ -87,6 +87,11 @@ public class WebSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(request -> {
+                    request.requestMatchers(
+                            HttpMethod.GET,
+                            "/api/v1/category/**",
+                            "/api/v1/products/**"
+                    ).permitAll();
                     request.requestMatchers(HttpMethod.POST, anyEndpointInsideSecurity).permitAll();
                     request.anyRequest().authenticated();
                 })
