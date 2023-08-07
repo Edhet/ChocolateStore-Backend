@@ -21,8 +21,8 @@ public class BuyOrderService {
     private final ProductService productService;
 
     public void createBuyingOrder(String authHeader, BuyOrderRequest request) {
-        Long expectedProductId = Shared.stringToLongParsing(request.productId());
-        Long expectedAmountValue = Shared.stringToLongParsing(request.amount());
+        long expectedProductId = Shared.stringToLongParsing(request.productId());
+        long expectedAmountValue = Shared.stringToLongParsing(request.amount());
 
         User userFromJwt = userService.getUserFromJwt(authHeader);
         Product product = productService.getProduct(expectedProductId);
@@ -32,7 +32,7 @@ public class BuyOrderService {
     }
 
     public void deleteBuyingOrder(String authHeader, String requestId) throws EntityNotFoundException, BadRequestException {
-        Long expectedProductId = Shared.stringToLongParsing(requestId);
+        long expectedProductId = Shared.stringToLongParsing(requestId);
 
         BuyOrder selectedBuyOrder = buyOrderRepository
                 .findById(expectedProductId)

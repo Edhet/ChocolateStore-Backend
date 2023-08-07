@@ -2,6 +2,7 @@ package com.edhet.store.util;
 
 import com.edhet.store.address.Address;
 import com.edhet.store.address.AddressDTO;
+import com.edhet.store.address.AddressRequest;
 import com.edhet.store.category.Category;
 import com.edhet.store.category.CategoryDTO;
 import com.edhet.store.error.exceptions.BadRequestException;
@@ -42,6 +43,25 @@ public class DtoMapper {
             throw new BadRequestException(field + " field is null");
         }
         return user;
+    }
+
+    public Address requestToAddress(AddressRequest request, User user) {
+        Long expectedNumber = Shared.stringToLongParsing(request.number());
+
+        try {
+            return new Address(
+                    request.country(),
+                    request.state(),
+                    request.city(),
+                    request.postalCode(),
+                    request.road(),
+                    expectedNumber,
+                    user
+            );
+        } catch (NullPointerException e) {
+            String field = e.getMessage().split(" ")[0];
+            throw new BadRequestException(field + " field is null");
+        }
     }
 
     public UserDTO userToDto(User user) {
