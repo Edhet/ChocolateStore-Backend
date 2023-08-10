@@ -4,6 +4,9 @@ import com.edhet.store.error.exceptions.BadRequestException;
 import com.edhet.store.error.exceptions.EntityNotFoundException;
 import com.edhet.store.util.Shared;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +19,12 @@ public class ProductService {
 
     public List<Product> getAllProducts() {
         return productRepository.findAll();
+    }
+
+    public Page<Product> getProductsWithCount(String count) {
+        int expectedCount = (int) Shared.stringToLongParsing(count);
+        Pageable limit = PageRequest.of(0, expectedCount);
+        return productRepository.findAll(limit);
     }
 
     public Product getProduct(Long id) throws EntityNotFoundException {

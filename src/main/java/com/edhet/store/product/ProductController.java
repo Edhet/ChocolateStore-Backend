@@ -28,4 +28,12 @@ public class ProductController {
     public ProductDTO getProduct(@PathVariable String id) {
         return dtoMapper.productToDto(productService.getProductFromRequest(id));
     }
+
+    @GetMapping("/all/{count}")
+    public List<ProductDTO> getAllProducts(@PathVariable("count") String count) {
+        return productService
+                .getProductsWithCount(count)
+                .stream().map(dtoMapper::productToDto)
+                .toList();
+    }
 }
