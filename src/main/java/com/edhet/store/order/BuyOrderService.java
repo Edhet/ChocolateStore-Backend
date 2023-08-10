@@ -20,9 +20,11 @@ public class BuyOrderService {
     private final UserService userService;
     private final ProductService productService;
 
-    public void createBuyingOrder(String authHeader, BuyOrderRequest request) {
+    public void createBuyingOrder(String authHeader, BuyOrderRequest request) throws BadRequestException {
         long expectedProductId = Shared.stringToLongParsing(request.productId());
         long expectedAmountValue = Shared.stringToLongParsing(request.amount());
+        if (expectedAmountValue < 1)
+            throw new BadRequestException("Amount value is negative");
 
         User userFromJwt = userService.getUserFromJwt(authHeader);
         Product product = productService.getProduct(expectedProductId);
