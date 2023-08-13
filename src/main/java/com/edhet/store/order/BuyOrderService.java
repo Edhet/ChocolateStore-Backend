@@ -24,7 +24,7 @@ public class BuyOrderService {
         long expectedProductId = Shared.stringToLongParsing(request.productId());
         long expectedAmountValue = Shared.stringToLongParsing(request.amount());
         if (expectedAmountValue < 1)
-            throw new BadRequestException("Amount value is negative");
+            throw new BadRequestException("Quantia negativa");
 
         User userFromJwt = userService.getUserFromJwt(authHeader);
         Product product = productService.getProduct(expectedProductId);
@@ -38,12 +38,12 @@ public class BuyOrderService {
 
         BuyOrder selectedBuyOrder = buyOrderRepository
                 .findById(expectedProductId)
-                .orElseThrow(() -> new EntityNotFoundException("No buy order with id: " + expectedProductId));
+                .orElseThrow(() -> new EntityNotFoundException("Nenhuma order de compra com id: " + expectedProductId));
 
         User userFromJwt = userService.getUserFromJwt(authHeader);
 
         if (!userFromJwt.getBuyOrders().contains(selectedBuyOrder))
-            throw new BadRequestException("buy order is for another user");
+            throw new BadRequestException("Order de compra de outro usuário");
 
         buyOrderRepository.delete(selectedBuyOrder);
     }

@@ -34,26 +34,26 @@ public class UserService implements UserDetailsService {
     public User getUser(String email) throws EntityNotFoundException {
         return userRepository
                 .findByEmail(email)
-                .orElseThrow(() -> new EntityNotFoundException("No user with email: " + email));
+                .orElseThrow(() -> new EntityNotFoundException("Nenhum usuário com email: " + email));
     }
 
     public User getUser(Long id) throws EntityNotFoundException {
         return userRepository
                 .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No user with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Nenhum usuário com id: " + id));
     }
 
     public void addUser(User user) throws UniqueDatabaseFieldException {
         if (!validDate(user.getBirthDate()))
-            throw new InvalidDateException("Inserted date is after today");
+            throw new InvalidDateException("Data após dia atual");
         if (userRepository.existsByEmail(user.getEmail()))
-            throw new UniqueDatabaseFieldException("Email " + user.getEmail() + " has been taken");
+            throw new UniqueDatabaseFieldException("Email " + user.getEmail() + " está em uso");
         userRepository.save(user);
     }
 
     public void deleteUser(Long id) throws EntityNotFoundException {
         if (!userRepository.existsById(id))
-            throw new EntityNotFoundException("No user with id: " + id);
+            throw new EntityNotFoundException("Nenhum usuário com id: " + id);
         userRepository.deleteById(id);
     }
 
@@ -73,6 +73,6 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository
                 .findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("No user with email: " + username));
+                .orElseThrow(() -> new UsernameNotFoundException("Nenhum usuário com email: " + username));
     }
 }

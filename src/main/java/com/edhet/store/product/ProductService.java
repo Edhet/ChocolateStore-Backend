@@ -30,7 +30,7 @@ public class ProductService {
     public Product getProduct(Long id) throws EntityNotFoundException {
         return productRepository
                 .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No product with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Nenhum produto com id: " + id));
     }
 
     public Product getProductFromRequest(String id) throws BadRequestException {

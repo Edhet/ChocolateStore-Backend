@@ -14,13 +14,13 @@ public class BuyOrderController {
     @PostMapping("/buy")
     public void createBuyingOrder(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader,
                                   @RequestBody BuyOrderRequest request) {
-    buyOrderService.createBuyingOrder(authHeader, request);
+        buyOrderService.createBuyingOrder(authHeader, request);
     }
 
     @DeleteMapping("/remove")
     public void removeBuyingOrder(@RequestHeader(HttpHeaders.AUTHORIZATION) String authHeader,
                                   @RequestBody String requestId) {
-    buyOrderService.deleteBuyingOrder(authHeader, requestId);
+        buyOrderService.deleteBuyingOrder(authHeader, requestId);
     }
 
     @PostMapping("/finish")

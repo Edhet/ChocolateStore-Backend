@@ -25,7 +25,7 @@ public class LoginService {
             user = userService.getUser(request.email());
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.email(), request.password()));
         } catch (AuthenticationException e) {
-            throw new WrongCredentialsException("Invalid password");
+            throw new WrongCredentialsException("Senha inválida");
         } catch (EntityNotFoundException e) {
             throw new WrongCredentialsException(e.getMessage());
         }

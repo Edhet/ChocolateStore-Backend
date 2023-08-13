@@ -37,10 +37,10 @@ public class DtoMapper {
                     request.gender()
             );
         } catch (IllegalArgumentException e) {
-            throw new BadRequestException("password field is null");
+            throw new BadRequestException("campo password está vazio");
         } catch (NullPointerException e) {
             String field = e.getMessage().split(" ")[0];
-            throw new BadRequestException(field + " field is null");
+            throw new BadRequestException("campo de " + field + " está vazio");
         }
         return user;
     }
@@ -60,7 +60,7 @@ public class DtoMapper {
             );
         } catch (NullPointerException e) {
             String field = e.getMessage().split(" ")[0];
-            throw new BadRequestException(field + " field is null");
+            throw new BadRequestException("campo de " + field + " está vazio");
         }
     }
 

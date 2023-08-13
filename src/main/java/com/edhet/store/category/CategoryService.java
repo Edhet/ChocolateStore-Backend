@@ -33,12 +33,12 @@ public class CategoryService {
     public Category getCategory(String name) throws EntityNotFoundException {
         return categoryRepository
                 .findByName(name)
-                .orElseThrow(() -> new EntityNotFoundException("No Category with name: " + name));
+                .orElseThrow(() -> new EntityNotFoundException("Nenhuma categoria com nome: " + name));
     }
 
     public Category getCategory(Long id) throws EntityNotFoundException {
         return categoryRepository
                 .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("No Category with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Nenhuma categoria com id: " + id));
     }
 }
