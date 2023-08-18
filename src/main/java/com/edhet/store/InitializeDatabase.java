@@ -19,18 +19,19 @@ public class InitializeDatabase implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
         List<Category> categories = List.of(
-                new Category("Dark Chocolate"),
-                new Category("White Chocolate"),
-                new Category("Milk Chocolate")
+                new Category("Meio Amargo"),
+                new Category("Branco"),
+                new Category("Ao Leite")
         );
         List<Product> products = List.of(
-                new Product("Bittersweet Chocolate", categories.get(0), BigDecimal.valueOf(15.99)),
-                new Product("Rich Chocolate", categories.get(0), BigDecimal.valueOf(19.99)),
-                new Product("Ivory Chocolate", categories.get(1), BigDecimal.valueOf(12.99)),
-                new Product("Vanilla Chocolate", categories.get(1), BigDecimal.valueOf(5.99)),
-                new Product("Creamy Chocolate", categories.get(2), BigDecimal.valueOf(9.99)),
-                new Product("Sweet Chocolate", categories.get(2), BigDecimal.valueOf(4.99))
+                new Product("Chocolate Agridoce", categories.get(0), BigDecimal.valueOf(15.99)),
+                new Product("Chocolate Rico", categories.get(0), BigDecimal.valueOf(19.99)),
+                new Product("Chocolate Marfim", categories.get(1), BigDecimal.valueOf(12.99)),
+                new Product("Chocolate Baunilha", categories.get(1), BigDecimal.valueOf(5.99)),
+                new Product("Chocolate Cremoso", categories.get(2), BigDecimal.valueOf(9.99)),
+                new Product("Chocolate Doce", categories.get(2), BigDecimal.valueOf(4.99))
         );
 
         if (categoryRepository.findAll().isEmpty())
