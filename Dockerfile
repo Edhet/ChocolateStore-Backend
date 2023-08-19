@@ -1,7 +1,11 @@
+FROM maven:openjdk:20-oracle as builder
+
+COPY ./src src/
+COPY ./pom.xml pom.xml
+
+RUN mvn clean package -DskipTests
+
 FROM openjdk:20-oracle
-
-RUN mvn clean package
-COPY target/*.jar store-backend.jar
-
+COPY --from=builder target/*.jar store-backend.jar
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "store-backend.jar"]
+CMD ["java", "-jar", "store-backend.jar"]
