@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:15.4
+    container_name: postgres_container
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=store
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=admin
+    volumes:
+      - /custom-volume:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "admin", "-d", "store" ]
+      interval: 5s
+      retries: 5
+    restart: always
+
+  backend:
+    build:
+      dockerfile: ./Dockerfile
+    container_name: store-backend_container
+    ports:
+      - 8080:8080
+    environment:
+      db-url: jdbc:postgresql://db:5432/store
+      db-username: admin
+      db-password: admin
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: always
+
+volumes:
+  custom-volume:
+    external: false
